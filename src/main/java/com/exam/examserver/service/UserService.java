@@ -1,5 +1,6 @@
-package com.exam.examserver.service.impl;
+package com.exam.examserver.service;
 
+import com.exam.examserver.dto.UserResponseDto;
 import com.exam.examserver.model.User;
 import com.exam.examserver.model.UserRole;
 import com.exam.examserver.repo.RoleRepository;
@@ -35,4 +36,27 @@ public class UserService {
         }
         return local;
     }
+
+    //getting user by username
+    public UserResponseDto getUser(String username) {
+        User byUsername = this.userRepository.findByUsername(username);
+        UserResponseDto userMapping = getUserMapping(byUsername);
+        return userMapping;
+    }
+
+    private UserResponseDto getUserMapping(User user){
+        UserResponseDto userResponseDto = new UserResponseDto();
+        userResponseDto.setId(user.getId());
+        userResponseDto.setUsername(user.getUsername());
+        userResponseDto.setPassword(user.getPassword());
+        userResponseDto.setFirstName(user.getFirstName());
+        userResponseDto.setLastName(user.getLastName());
+        userResponseDto.setEmail(user.getEmail());
+        userResponseDto.setPhone(user.getPhone());
+        userResponseDto.setProfile(user.getProfile());
+        userResponseDto.setEnabled(user.isEnabled());
+        return userResponseDto;
+    }
+
+
 }
