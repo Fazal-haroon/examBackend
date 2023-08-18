@@ -1,6 +1,6 @@
 package com.exam.examserver.repo;
 
-import com.exam.examserver.model.User;
+import com.exam.examserver.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

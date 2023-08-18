@@ -1,16 +1,57 @@
-package com.exam.examserver.dto;
+package com.exam.examserver.entity;
 
-public class UserRequestDto {
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
+@Entity
+@Table(name = "users")
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String username;
     private String password;
     private String firstName;
     private String lastName;
     private String email;
     private String phone;
+    private boolean enabled = true;
     private String profile;
 
-    public UserRequestDto() {
+    //user many roles
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+    @JsonIgnore
+    private Set<UserRole> userRoles = new HashSet<>();
+
+    public User() {
+    }
+
+    public Set<UserRole> getUserRoles() {
+        return userRoles;
+    }
+
+    public void setUserRoles(Set<UserRole> userRoles) {
+        this.userRoles = userRoles;
+    }
+
+    public String getProfile() {
+        return profile;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -61,11 +102,11 @@ public class UserRequestDto {
         this.phone = phone;
     }
 
-    public String getProfile() {
-        return profile;
+    public boolean isEnabled() {
+        return enabled;
     }
 
-    public void setProfile(String profile) {
-        this.profile = profile;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }

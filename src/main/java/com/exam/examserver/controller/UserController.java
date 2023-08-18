@@ -1,10 +1,10 @@
 package com.exam.examserver.controller;
 
-import com.exam.examserver.dto.UserRequestDto;
-import com.exam.examserver.dto.UserResponseDto;
-import com.exam.examserver.model.Role;
-import com.exam.examserver.model.User;
-import com.exam.examserver.model.UserRole;
+import com.exam.examserver.model.UserRequestModel;
+import com.exam.examserver.model.UserResponseModel;
+import com.exam.examserver.entity.Role;
+import com.exam.examserver.entity.User;
+import com.exam.examserver.entity.UserRole;
 import com.exam.examserver.repo.RoleRepository;
 import com.exam.examserver.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class UserController {
 
     //user creation
     @PostMapping("/")
-    public User createUser(@RequestBody UserRequestDto user) throws Exception {
+    public User createUser(@RequestBody UserRequestModel user) throws Exception {
         Set<UserRole> roles = new HashSet<>();
         Role roleExist = roleRepository.findByRoleName("NORMAL");
         UserRole userRole = new UserRole();
@@ -46,19 +46,19 @@ public class UserController {
     }
 
     @GetMapping("/{username}")
-    public UserResponseDto getUser(@PathVariable("username") String username) {
+    public UserResponseModel getUser(@PathVariable("username") String username) {
         return this.userService.getUser(username);
     }
 
-    private User userCreateMapping(UserRequestDto userRequestDto){
+    private User userCreateMapping(UserRequestModel userRequestModel){
         User user = new User();
-        user.setUsername(userRequestDto.getUsername());
-        user.setPassword(userRequestDto.getPassword());
-        user.setFirstName(userRequestDto.getFirstName());
-        user.setLastName(userRequestDto.getLastName());
-        user.setEmail(userRequestDto.getEmail());
-        user.setPhone(userRequestDto.getPhone());
-        user.setProfile(userRequestDto.getProfile());
+        user.setUsername(userRequestModel.getUsername());
+        user.setPassword(userRequestModel.getPassword());
+        user.setFirstName(userRequestModel.getFirstName());
+        user.setLastName(userRequestModel.getLastName());
+        user.setEmail(userRequestModel.getEmail());
+        user.setPhone(userRequestModel.getPhone());
+        user.setProfile(userRequestModel.getProfile());
         return user;
     }
 }

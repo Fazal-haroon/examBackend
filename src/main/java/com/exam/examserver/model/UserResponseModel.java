@@ -1,17 +1,6 @@
 package com.exam.examserver.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
-
-@Entity
-@Table(name = "users")
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UserResponseModel {
     private Long id;
     private String username;
     private String password;
@@ -19,31 +8,10 @@ public class User {
     private String lastName;
     private String email;
     private String phone;
-    private boolean enabled = true;
+    private boolean enabled;
     private String profile;
 
-    //user many roles
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
-    @JsonIgnore
-    private Set<UserRole> userRoles = new HashSet<>();
-
-    public User() {
-    }
-
-    public Set<UserRole> getUserRoles() {
-        return userRoles;
-    }
-
-    public void setUserRoles(Set<UserRole> userRoles) {
-        this.userRoles = userRoles;
-    }
-
-    public String getProfile() {
-        return profile;
-    }
-
-    public void setProfile(String profile) {
-        this.profile = profile;
+    public UserResponseModel() {
     }
 
     public Long getId() {
@@ -108,5 +76,13 @@ public class User {
 
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public String getProfile() {
+        return profile;
+    }
+
+    public void setProfile(String profile) {
+        this.profile = profile;
     }
 }

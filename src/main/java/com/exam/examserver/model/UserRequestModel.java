@@ -1,25 +1,16 @@
-package com.exam.examserver.dto;
+package com.exam.examserver.model;
 
-public class UserResponseDto {
-    private Long id;
+public class UserRequestModel {
+
     private String username;
     private String password;
     private String firstName;
     private String lastName;
     private String email;
     private String phone;
-    private boolean enabled;
     private String profile;
 
-    public UserResponseDto() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public UserRequestModel() {
     }
 
     public String getUsername() {
@@ -68,14 +59,6 @@ public class UserResponseDto {
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
     }
 
     public String getProfile() {
