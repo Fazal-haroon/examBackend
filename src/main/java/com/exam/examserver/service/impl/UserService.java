@@ -29,7 +29,7 @@ public class UserService {
             for (UserRole ur : userRoles) {
                 roleRepository.save(ur.getRole());
             }
-
+            user.setId(0L);
             user.getUserRoles().addAll(userRoles);
             local = this.userRepository.save(user);
         }
