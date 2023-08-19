@@ -44,6 +44,10 @@ public class UserService {
         return userMapping;
     }
 
+    public void deleteUser(Long userId) {
+        this.userRepository.deleteById(userId);
+    }
+
     private UserResponseModel getUserMapping(User user){
         UserResponseModel userResponseModel = new UserResponseModel();
         userResponseModel.setId(user.getId());

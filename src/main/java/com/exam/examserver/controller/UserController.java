@@ -50,6 +50,12 @@ public class UserController {
         return this.userService.getUser(username);
     }
 
+    //delete the user by id
+    @DeleteMapping("/{userId}")
+    public void deleteUser(@PathVariable("userId") Long userId) {
+        this.userService.deleteUser(userId);
+    }
+
     private User userCreateMapping(UserRequestModel userRequestModel){
         User user = new User();
         user.setUsername(userRequestModel.getUsername());
