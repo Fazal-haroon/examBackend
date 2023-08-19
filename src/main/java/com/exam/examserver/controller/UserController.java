@@ -14,6 +14,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/v1")
 public class UserController {
 
