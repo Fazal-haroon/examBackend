@@ -14,7 +14,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/api/v1")
 public class UserController {
 
     @Autowired
@@ -24,7 +24,7 @@ public class UserController {
     private RoleRepository roleRepository;
 
     //user creation
-    @PostMapping("/")
+    @PostMapping("/user/")
     public User createUser(@RequestBody UserRequestModel user) throws Exception {
         Set<UserRole> roles = new HashSet<>();
         Role roleExist = roleRepository.findByRoleName("NORMAL");
@@ -45,13 +45,13 @@ public class UserController {
         return this.userService.createUser(user1, roles);
     }
 
-    @GetMapping("/{username}")
+    @GetMapping("/user/{username}")
     public UserResponseModel getUser(@PathVariable("username") String username) {
         return this.userService.getUser(username);
     }
 
     //delete the user by id
-    @DeleteMapping("/{userId}")
+    @DeleteMapping("/user/{userId}")
     public void deleteUser(@PathVariable("userId") Long userId) {
         this.userService.deleteUser(userId);
     }
