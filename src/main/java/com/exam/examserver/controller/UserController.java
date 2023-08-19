@@ -57,7 +57,7 @@ public class UserController {
         this.userService.deleteUser(userId);
     }
 
-    private User userCreateMapping(UserRequestModel userRequestModel){
+    private User userCreateMapping(UserRequestModel userRequestModel) {
         User user = new User();
         user.setUsername(userRequestModel.getUsername());
         user.setPassword(userRequestModel.getPassword());
@@ -65,7 +65,11 @@ public class UserController {
         user.setLastName(userRequestModel.getLastName());
         user.setEmail(userRequestModel.getEmail());
         user.setPhone(userRequestModel.getPhone());
-        user.setProfile(userRequestModel.getProfile());
+        if (userRequestModel.getProfile() == null) {
+            user.setProfile("default.png");
+        } else {
+            user.setProfile(userRequestModel.getProfile());
+        }
         return user;
     }
 }
