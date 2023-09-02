@@ -6,7 +6,7 @@ import com.exam.examserver.entity.Role;
 import com.exam.examserver.entity.User;
 import com.exam.examserver.entity.UserRole;
 import com.exam.examserver.repo.RoleRepository;
-import com.exam.examserver.service.UserService;
+import com.exam.examserver.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +19,7 @@ import java.util.Set;
 public class UserController {
 
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userServiceImpl;
 
     @Autowired
     private RoleRepository roleRepository;
@@ -43,18 +43,18 @@ public class UserController {
             userRole.setRole(roleExist);
         }
         roles.add(userRole);
-        return this.userService.createUser(user1, roles);
+        return this.userServiceImpl.createUser(user1, roles);
     }
 
     @GetMapping("/user/{username}")
     public UserResponseModel getUser(@PathVariable("username") String username) {
-        return this.userService.getUser(username);
+        return this.userServiceImpl.getUser(username);
     }
 
     //delete the user by id
     @DeleteMapping("/user/{userId}")
     public void deleteUser(@PathVariable("userId") Long userId) {
-        this.userService.deleteUser(userId);
+        this.userServiceImpl.deleteUser(userId);
     }
 
     private User userCreateMapping(UserRequestModel userRequestModel) {
