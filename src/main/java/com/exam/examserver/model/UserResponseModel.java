@@ -1,5 +1,9 @@
 package com.exam.examserver.model;
 
+import com.exam.examserver.entity.Authority;
+
+import java.util.Set;
+
 public class UserResponseModel {
     private Long id;
     private String username;
@@ -10,6 +14,8 @@ public class UserResponseModel {
     private String phone;
     private boolean enabled;
     private String profile;
+
+    private Set<Authority> authority;
 
     public UserResponseModel() {
     }
@@ -84,5 +90,13 @@ public class UserResponseModel {
 
     public void setProfile(String profile) {
         this.profile = profile;
+    }
+
+    public Set<Authority> getAuthority() {
+        return authority;
+    }
+
+    public void setAuthority(Set<Authority> authority) {
+        this.authority = authority;
     }
 }
