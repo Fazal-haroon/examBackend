@@ -21,31 +21,6 @@ public class UserController {
     @Autowired
     private UserServiceImpl userServiceImpl;
 
-    @Autowired
-    private RoleRepository roleRepository;
-
-    //user creation
-    @PostMapping("/user/")
-    public User createUser(@RequestBody UserRequestModel user) throws Exception {
-        Set<UserRole> roles = new HashSet<>();
-        Role roleExist = roleRepository.findByRoleName("NORMAL");
-        UserRole userRole = new UserRole();
-        User user1 = userCreateMapping(user);
-        if (roleExist == null) {
-            Role role = new Role();
-            role.setRoleId(0L);
-            role.setRoleName("NORMAL");
-
-            userRole.setUser(user1);
-            userRole.setRole(role);
-        } else {
-            userRole.setUser(user1);
-            userRole.setRole(roleExist);
-        }
-        roles.add(userRole);
-        return this.userServiceImpl.createUser(user1, roles);
-    }
-
     @GetMapping("/user/{username}")
     public UserResponseModel getUser(@PathVariable("username") String username) {
         return this.userServiceImpl.getUser(username);
@@ -57,19 +32,4 @@ public class UserController {
         this.userServiceImpl.deleteUser(userId);
     }
 
-    private User userCreateMapping(UserRequestModel userRequestModel) {
-        User user = new User();
-        user.setUsername(userRequestModel.getUsername());
-        user.setPassword(userRequestModel.getPassword());
-        user.setFirstName(userRequestModel.getFirstName());
-        user.setLastName(userRequestModel.getLastName());
-        user.setEmail(userRequestModel.getEmail());
-        user.setPhone(userRequestModel.getPhone());
-        if (userRequestModel.getProfile() == null) {
-            user.setProfile("default.png");
-        } else {
-            user.setProfile(userRequestModel.getProfile());
-        }
-        return user;
-    }
 }
