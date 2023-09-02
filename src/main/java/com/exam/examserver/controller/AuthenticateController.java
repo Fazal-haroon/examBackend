@@ -64,7 +64,8 @@ public class AuthenticateController {
         //authenticate
         UserDetails userDetails = this.userDetailsService.loadUserByUsername(jwtRequest.getUsername());
         String token = this.jwtUtil.generateToken(userDetails);
-        return ResponseEntity.ok(new JwtResponse("Bearer " + token));
+//        return ResponseEntity.ok(new JwtResponse("Bearer " + token));
+        return ResponseEntity.ok(new JwtResponse(token));
 
     }
 
