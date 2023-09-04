@@ -15,7 +15,7 @@ public class UserResponseModel {
     private boolean enabled;
     private String profile;
 
-    private Set<Authority> authority;
+    private Set<Authority> authorities;
 
     public UserResponseModel() {
     }
@@ -92,11 +92,11 @@ public class UserResponseModel {
         this.profile = profile;
     }
 
-    public Set<Authority> getAuthority() {
-        return authority;
+    public Set<Authority> getAuthorities() {
+        return authorities;
     }
 
-    public void setAuthority(Set<Authority> authority) {
-        this.authority = authority;
+    public void setAuthorities(Set<Authority> authorities) {
+        this.authorities = authorities;
     }
 }

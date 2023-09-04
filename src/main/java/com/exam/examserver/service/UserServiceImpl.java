@@ -60,7 +60,7 @@ public class UserServiceImpl {
         userResponseModel.setPhone(user.getPhone());
         userResponseModel.setProfile(user.getProfile());
         userResponseModel.setEnabled(user.isEnabled());
-        userResponseModel.setAuthority((Set<Authority>) user.getAuthorities());
+        userResponseModel.setAuthorities((Set<Authority>) user.getAuthorities());
         return userResponseModel;
     }
 
