@@ -52,6 +52,8 @@ HELP.md
 /.nb-gradle/
 build/
 target/
+target\
+target
 !**/src/main/**/build/
 !**/src/test/**/build/
 
