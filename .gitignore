@@ -1,4 +1,8 @@
-# Compiled class file
+/target/
+.settings/
+.idea/
+
+#Compiled class file
 *.class
 
 # Log file
@@ -51,12 +55,6 @@ HELP.md
 /nbdist/
 /.nb-gradle/
 build/
-target/
-target\
-target
-/target/
-/target/**
-target/classes
 !**/src/main/**/build/
 !**/src/test/**/build/
 
