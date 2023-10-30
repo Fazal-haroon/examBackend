@@ -7,6 +7,7 @@ import com.exam.examserver.entity.UserRole;
 import com.exam.examserver.repo.RoleRepository;
 import com.exam.examserver.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;

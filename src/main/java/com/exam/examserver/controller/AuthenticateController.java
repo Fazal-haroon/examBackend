@@ -14,6 +14,7 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -91,10 +92,13 @@ public class AuthenticateController {
         return this.userServiceImpl.createUser(user1, roles);
     }
 
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
     private User userCreateMapping(UserRequestModel userRequestModel) {
         User user = new User();
         user.setUsername(userRequestModel.getUsername());
-        user.setPassword(userRequestModel.getPassword());
+        user.setPassword(this.passwordEncoder.encode(userRequestModel.getPassword()));
         user.setFirstName(userRequestModel.getFirstName());
         user.setLastName(userRequestModel.getLastName());
         user.setEmail(userRequestModel.getEmail());
