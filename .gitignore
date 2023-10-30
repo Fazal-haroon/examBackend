@@ -54,6 +54,8 @@ build/
 target/
 target\
 target
+/target/
+/target/**
 !**/src/main/**/build/
 !**/src/test/**/build/
 
