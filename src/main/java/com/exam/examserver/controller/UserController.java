@@ -1,5 +1,6 @@
 package com.exam.examserver.controller;
 
+import com.exam.examserver.exception.UserFoundException;
 import com.exam.examserver.model.UserRequestModel;
 import com.exam.examserver.model.UserResponseModel;
 import com.exam.examserver.entity.Role;
@@ -8,6 +9,8 @@ import com.exam.examserver.entity.UserRole;
 import com.exam.examserver.repo.RoleRepository;
 import com.exam.examserver.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
@@ -32,4 +35,8 @@ public class UserController {
         this.userServiceImpl.deleteUser(userId);
     }
 
+    @ExceptionHandler(UserFoundException.class)
+    public ResponseEntity<?> exceptionHandler(UserFoundException exception) {
+        return new ResponseEntity<>(exception.getMessage(), HttpStatus.NOT_FOUND);
+    }
 }

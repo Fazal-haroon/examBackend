@@ -1,6 +1,7 @@
 package com.exam.examserver.service;
 
 import com.exam.examserver.entity.Authority;
+import com.exam.examserver.exception.UserFoundException;
 import com.exam.examserver.model.UserResponseModel;
 import com.exam.examserver.entity.User;
 import com.exam.examserver.entity.UserRole;
@@ -26,7 +27,7 @@ public class UserServiceImpl {
         User local = this.userRepository.findByUsername(user.getUsername());
         if (local != null) {
             System.out.println("User is already there !!");
-            throw new Exception("User already present !!");
+            throw new UserFoundException();
         } else {
             //create user
             for (UserRole ur : userRoles) {
